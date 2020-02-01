@@ -2,7 +2,7 @@ import java.sql.Connection;
 import java.sql.SQLException;
 
 import model.JavadbConnection;
-import model.UserModel;
+import model.BaseModel;
 
 public class Main {
 
@@ -10,7 +10,7 @@ public class Main {
 		// TODO 自動生成されたメソッド・スタブ
 
 		try {
-			System.out.println(UserModel.getInstance().getUserClass("nakata", "shouhei"));
+			System.out.println(BaseModel.getInstance().getUserClass("nakata", "shouhei"));
 		} catch (SQLException e) {
 			// TODO 自動生成された catch ブロック
 			e.printStackTrace();

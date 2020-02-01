@@ -5,19 +5,16 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 //TODO 登録日時のDB登録
-public class UserModel {
+public class BaseModel {
 
 	//フィールド
-	private static UserModel userModelInstance = new UserModel();
+	private static BaseModel userModelInstance = new BaseModel();
 	private final JavadbConnection CONNECTION_INSTANCE = JavadbConnection.getInstance();//インスタンス生成
 	private Statement dbstatement;
-	//定数
-	private final String ID_COLUMN = "ID";
-	private final String PASS_COLUMN = "Pass";
-	private final String CLASS_COLUMN = "CLASS";
+
 
 	//constractor
-	private UserModel() {
+	private BaseModel() {
 		try {
 			dbstatement = CONNECTION_INSTANCE.getStatement();
 		} catch (SQLException e) {
@@ -27,11 +24,11 @@ public class UserModel {
 		}
 	};
 	//singleton
-	public static UserModel getInstance() {
+	public static BaseModel getInstance() {
 		return userModelInstance;
 	}
 
-	//method
+
 	/**
 	 * CLASSの文字列を返す。
 	 * @param id
@@ -66,12 +63,12 @@ public class UserModel {
 		//statementインターフェースを利用してDB操作をする
 		String sql = "SELECT "
 				+ "CLASS "
-				+ "FROM "
+				+ " FROM "
 				+ "account "
 				+ "WHERE "
 				+ "ID = '" + id
-				+ "' AND"
-				+ " Pass = '" + pass
+				+ "' AND "
+				+ "Pass = '" + pass
 				+ "';";
 		try {
 			ResultSet result = dbstatement.executeQuery(sql);//ResultSet型を返す

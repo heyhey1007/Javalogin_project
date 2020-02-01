@@ -51,7 +51,6 @@ public class JavadbConnection {
 	 * @throws SQLException
 	 */
 	protected Statement getStatement() throws SQLException {
-
 		return  con.createStatement();
 	}
 
