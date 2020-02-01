@@ -5,55 +5,49 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 //TODO 登録日時のDB登録
-public class BaseModel {
+public class UserModel {
 
 	//フィールド
-	private static BaseModel userModelInstance = new BaseModel();
-	private final JavadbConnection CONNECTION_INSTANCE = JavadbConnection.getInstance();//インスタンス生成
+	private static UserModel userModelInstance = new UserModel();
 	private Statement dbstatement;
 
-
 	//constractor
-	private BaseModel() {
+	private UserModel() {
 		try {
-			dbstatement = CONNECTION_INSTANCE.getStatement();
+			dbstatement = JavadbConnection.getInstance().getStatement();
 		} catch (SQLException e) {
 			// TODO 自動生成された catch ブロック
 			e.printStackTrace();
-			System.out.println("ステートメント作成失敗");
+			System.out.println("ステートメント取得失敗");
 		}
 	};
+
 	//singleton
-	public static BaseModel getInstance() {
+	public static UserModel getInstance() {
 		return userModelInstance;
 	}
 
-
 	/**
-	 * CLASSの文字列を返す。
+	 * DBに問い合わせ、CLASSカラムの文字列を返す。
 	 * @param id
 	 * @param pass
 	 * @return Data
 	 * @throws SQLException
 	 */
 	public String getUserClass(String id, String pass) throws SQLException {
+		//DBからデータオブジェクトを受け取る。
 		ResultSet resultData = getUserClassData(id, pass);
 		String Data = "";
-
-		if (resultData == null) {
-			System.out.println("データ取得エラー");
-			return null;
-		} else {
-			//次のデータがなければ
-			while (resultData.next()) {
-				Data = resultData.getString("CLASS");
-			}
-			return Data;
+		//次のデータがなければ
+		while (resultData.next()) {
+			Data = resultData.getString("CLASS");
 		}
+		return Data;
+
 	}
 
 	/**
-	 * クラスデータを取得する
+	 * Userデータを取得する
 	 * SQLでDBに問い合わせ
 	 * @param id
 	 * @param pass
