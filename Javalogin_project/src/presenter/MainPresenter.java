@@ -19,6 +19,7 @@ public class MainPresenter implements IAuthPresenter {
 				view.showMyPage();
 			}
 		}
+
 	}
 
 	@Override
