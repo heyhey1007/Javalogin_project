@@ -28,22 +28,62 @@ public class UserModel {
 	}
 
 	/**
+	 *
+	 */
+	public boolean authMember(String id, String pass) {
+		try {
+			if(checkAuth(id, pass).next()== false) {
+				return false;
+			}
+		} catch (SQLException e) {
+			// TODO 自動生成された catch ブロック
+			e.printStackTrace();
+		}
+		return true;
+
+	}
+	/**
 	 * DBに問い合わせ、CLASSカラムの文字列を返す。
 	 * @param id
 	 * @param pass
 	 * @return Data
 	 * @throws SQLException
 	 */
-	public String getUserClass(String id, String pass) throws SQLException {
+	public String getUserClass(String id, String pass) {
 		//DBからデータオブジェクトを受け取る。
 		ResultSet resultData = getUserClassData(id, pass);
 		String Data = "";
 		//次のデータがなければ
-		while (resultData.next()) {
-			Data = resultData.getString("CLASS");
+		try {
+			while (resultData.next()) {
+				Data = resultData.getString("CLASS");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
 		}
 		return Data;
 
+	}
+
+	private ResultSet checkAuth(String id, String pass) {
+		String sql = "SELECT "
+				+ "*"
+				+ " FROM "
+				+ "account "
+				+ "WHERE "
+				+ "ID = '" + id
+				+ "' AND "
+				+ "Pass = '" + pass
+				+ "';";
+		try {
+			ResultSet result = dbstatement.executeQuery(sql);//ResultSet型を返す
+			System.out.println("クラスデータ取得成功");
+			return result;
+		} catch (SQLException e) {
+			System.out.println("クラスデータ取得失敗");
+			e.printStackTrace();
+			return null;
+		}
 	}
 
 	/**
