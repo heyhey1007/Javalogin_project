@@ -1,5 +1,8 @@
 package view;
-
+/*
+ * コンソールへの表示のみを定義する。(マイページ画面)
+ * TODO データは保持しないように
+ */
 public class MyPageView implements IState{
 
 	protected static String userClass = "";

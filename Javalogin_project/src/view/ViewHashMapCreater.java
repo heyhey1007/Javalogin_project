@@ -1,8 +1,10 @@
 package view;
-
-
 import java.util.HashMap;
 
+/**
+ * Viewを管理しやすくしたかった。。。(Mapを使いたかった)
+ * HashMapを使って,値としてViewのインスタンスを返す。
+ * */
 public class ViewHashMapCreater {
 
 	private ViewHashMapCreater(){

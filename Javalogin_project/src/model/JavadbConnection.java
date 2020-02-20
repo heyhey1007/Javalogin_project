@@ -29,7 +29,7 @@ public class JavadbConnection {
 					"jdbc:mysql://localhost:3306/javadb",
 					"root",
 					"root");
-			System.out.println("MySQLに接続できました。");
+			//System.out.println("MySQLに接続できました。");
 		} catch (SQLException e1) {//接続失敗時の例外処理
 			System.out.println("MySQLに接続できませんでした。");
 		}

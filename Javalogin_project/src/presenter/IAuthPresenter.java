@@ -1,10 +1,10 @@
 package presenter;
 
 /**
- * View側からPresenter側にしてほしい処理を書く
- * インターフェース
+ * View側からPresenter側にしてほしい
+ * 処理のインターフェース
+ * (ユーザーの操作によって呼び出される処理を定義)
  * @author heyhe
-
  */
 public interface IAuthPresenter {
 	//presenterがViewから呼ばれる処理を定義
